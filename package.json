@@ -1,0 +1,13 @@
+{
+    "name": "autoversion",
+    "version": "0.0.1",
+    "description": "Auto version example using Github Pipelines",
+    "main": "api.js",
+    "dependencies": {},
+    "devDependencies": {
+      "gulp": "3.9.1",
+      "gulp-json-modify": "1.0.2",
+      "run-sequence": "1.2.2"
+    },
+    "scripts": {}
+  }
