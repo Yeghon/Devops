@@ -10,7 +10,7 @@ gulp.task('upversion', function (release) {
   let vBump = ''
   let index = 0
   console.log(process.argv[4])
-  switch (process.argv[4]) {
+  switch (release) {
     case 'production':
       vBump = splitVersion[1].split('"')
       index = 1
