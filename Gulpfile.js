@@ -2,25 +2,24 @@ const gulp = require('gulp')
 const runSequence = require('run-sequence') // Run tasks sequentially
 const jsonModify = require('gulp-json-modify')
 
-gulp.task('upversion', function (release) {
+gulp.task('upversion', function () {
   let currentVersion = require('./package.json').version
-  console.log(process.argv)
-  console.log(process.argv[4])
   console.log(`Current version: ${currentVersion}`)
   let splitVersion = currentVersion.split('.') // Format 1.prod.stage.dev
   let vBump = ''
   let index = 0
-  switch (release) {
+  switch (process.argv[4]) {
     case 'production':
-      vBump = splitVersion[1].split('"')
+      vBump = splitVersion[0].split('"')
       index = 1
       break
     case 'staging':
-      vBump = splitVersion[2].split('"')
+      vBump = splitVersion[1].split('"')
       index = 2
       break
     case 'development':
-      vBump = splitVersion[3].split('"')
+      console.log("We're in dev mode")
+      vBump = splitVersion[2].split('"')
       index = 3
       break
     default:
