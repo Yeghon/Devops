@@ -5,7 +5,7 @@ const jsonModify = require('gulp-json-modify');
 
 gulp.task('upversion', function (release) {
   let currentVersion = require('./package.json').version
-  console.log(process.argv)
+  // console.log(process.argv)
   console.log(`Current version: ${currentVersion}`)
   let splitVersion = currentVersion.split('.') // Format 1.prod.stage.dev
   let vBump = ''
