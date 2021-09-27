@@ -2,20 +2,34 @@ const gulp = require('gulp');
 const runSequence = require('run-sequence'); // Run tasks sequentially
 const jsonModify = require('gulp-json-modify');
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//  AUTO UPDATE PATCH TASK
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 gulp.task('upversion', function () {
-    console.log(process.argv)
-    let ver = require('./package.json').version; //version defined in the package.json file
-    console.log('current version: ', ver)
-    let splitString = ver.split('.', 3)
-    let patchVersion = splitString[2].split('"',1)
-    let patchNumber = Number(patchVersion[0])
-    patchNumber++
-    splitString[2] = String(patchNumber);
-    process.env.VERSION = splitString.join('.');
-    console.log(process.env.VERSION)
+  let currentVersion = require('./package.json').version
+  console.log(`Current version: ${currentVersion}`)
+  let splitVersion = currentVersion.split('.') // Format 1.prod.stage.dev
+  let vBump = ''
+  let index = 0
+  switch (process.argv[process.argv.length - 1]) {
+    case 'production':
+      vBump = splitVersion[1].split('"')
+      index = 1
+      break
+    case 'staging':
+      vBump = splitVersion[2].split('"')
+      index = 2
+      break
+    case 'development':
+      vBump = splitVersion[3].split('"')
+      index = 3
+      break
+    default:
+      break
+  }
+  let patch = Number(vBump)
+  patch++
+  splitVersion[index] = String(patch)
+  process.env.VERSION = splitVersion.join('.')
+  console.log(`New Version: ${process.env.VERSION}`)
 })
 
 gulp.task('saveversion', function () {

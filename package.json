@@ -1,6 +1,6 @@
 {
   "name": "autoversion",
-  "version": "0.0.2",
+  "version": "1.0.0.2",
   "description": "Auto version example using Github Pipelines",
   "main": "api.js",
   "dependencies": {},

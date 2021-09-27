@@ -19,7 +19,7 @@ jobs:
       # "ReferenceError: primordials is not defined" in Node.js
       - run: cat dump.txt >> npm-shrinkwrap.json
       - run: npm install
-      - run: gulp autoversion --option dev
+      - run: gulp autoversion --option development
       - run: git add package.json
       - run: git config user.email "haronyegon90@gmail.com"
       - run: git config user.name "Yeghon"
