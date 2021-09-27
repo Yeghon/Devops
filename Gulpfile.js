@@ -1,11 +1,11 @@
-const gulp = require('gulp');
-const runSequence = require('run-sequence'); // Run tasks sequentially
-const jsonModify = require('gulp-json-modify');
-
+const gulp = require('gulp')
+const runSequence = require('run-sequence') // Run tasks sequentially
+const jsonModify = require('gulp-json-modify')
 
 gulp.task('upversion', function (release) {
   let currentVersion = require('./package.json').version
-  // console.log(process.argv)
+  console.log(process.argv)
+  console.log(process.argv[4])
   console.log(`Current version: ${currentVersion}`)
   let splitVersion = currentVersion.split('.') // Format 1.prod.stage.dev
   let vBump = ''
@@ -34,14 +34,17 @@ gulp.task('upversion', function (release) {
 })
 
 gulp.task('saveversion', function () {
-return gulp.src(['./package.json'])
-    .pipe(jsonModify({
+  return gulp
+    .src(['./package.json'])
+    .pipe(
+      jsonModify({
         key: 'version',
-        value: process.env.VERSION
-    }))
+        value: process.env.VERSION,
+      }),
+    )
     .pipe(gulp.dest('./'))
 })
 
 gulp.task('autoversion', function () {
-    runSequence('upversion','saveversion');
+  runSequence('upversion', 'saveversion')
 })
