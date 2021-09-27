@@ -1,5 +1,5 @@
 name: Pipeline version bump test
-on: [push]
+on: [merge]
 jobs:
   Bump-Version-Number:
   # ubuntu and node with npm installed
@@ -25,6 +25,7 @@ jobs:
       - run: git config user.name "Yeghon"
       - run: git config remote.origin.url 
       - run: git commit -m "[skip CI]"
+      # The commit message “[skip CI]” is necessary to avoid re-triggering the build. Without it an endless cascade of builds will trigger.
       - run: git push
       - run: declare -x VERSION2=$(jq -r '.version' package.json); echo $VERSION2;
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
