@@ -10,16 +10,15 @@ gulp.task('upversion', function () {
   let index = 0
   switch (process.argv[4]) {
     case 'production':
-      vBump = splitVersion[0].split('"')
+      vBump = splitVersion[1].split('"')
       index = 1
       break
     case 'staging':
-      vBump = splitVersion[1].split('"')
+      vBump = splitVersion[2].split('"')
       index = 2
       break
     case 'development':
-      console.log("We're in dev mode")
-      vBump = splitVersion[2].split('"')
+      vBump = splitVersion[3].split('"')
       index = 3
       break
     default:
