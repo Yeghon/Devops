@@ -8,6 +8,8 @@ gulp.task('upversion', function () {
   let splitVersion = currentVersion.split('.') // Format 1.prod.stage.dev
   let vBump = ''
   let index = 0
+  console.log('Split version ')
+  console.log(splitVersion)
   switch (process.argv[4]) {
     case 'production':
       vBump = splitVersion[1].split('"')
