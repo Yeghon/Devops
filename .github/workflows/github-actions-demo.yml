@@ -8,6 +8,7 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - run: echo "Building up versioning functionality"
+      - run: cd ..
       - run: npm install
       - run: declare -x VERSION=$(jq -r '.version' package.json)
       - run: echo $VERSION
