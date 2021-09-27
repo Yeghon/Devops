@@ -6,6 +6,7 @@ const jsonModify = require('gulp-json-modify');
 //  AUTO UPDATE PATCH TASK
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 gulp.task('upversion', function () {
+    console.log(process.argv)
     let ver = require('./package.json').version; //version defined in the package.json file
     console.log('current version: ', ver)
     let splitString = ver.split('.', 3)
