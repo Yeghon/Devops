@@ -2,7 +2,7 @@ name: Pipeline version bump test
 on: [push]
 jobs:
   Bump-Version-Number:
-  # ubuntu and node with npm installed
+    # ubuntu and node with npm installed
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 Just a welcome log message."
@@ -11,11 +11,11 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm install; 
+      - run: npm install;
       - run: npm install -g gulp;
       - run: touch npm-shrinkwrap.json
       - run: ls -la
-       # This has to come here not to repeat npm install of gulp which will yield an error of 
+        # This has to come here not to repeat npm install of gulp which will yield an error of
       # "ReferenceError: primordials is not defined" in Node.js
       - run: cat dump.txt >> npm-shrinkwrap.json
       - run: npm install
@@ -23,7 +23,7 @@ jobs:
       - run: git add package.json
       - run: git config user.email "haronyegon90@gmail.com"
       - run: git config user.name "Yeghon"
-      - run: git config remote.origin.url 
+      - run: git config remote.origin.url
       - run: git commit -m "[skip CI]"
       # The commit message “[skip CI]” is necessary to avoid re-triggering the build. Without it an endless cascade of builds will trigger.
       - run: git push
