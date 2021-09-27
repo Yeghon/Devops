@@ -15,12 +15,17 @@ jobs:
       - run: npm install -g gulp;
       - run: touch npm-shrinkwrap.json
       - run: ls -la
+       # This has to come here not to repeat npm install of gulp which will yield an error of 
+      # "ReferenceError: primordials is not defined" in Node.js
       - run: cat dump.txt >> npm-shrinkwrap.json
       - run: npm install
       - run: gulp autoversion;
       - run: git add package.json
+      - run: git config user.email "haronyegon90@gmail.com"
+      - run: git config user.name "Yeghon"
+      - run: git config remote.origin.url 
       - run: git commit -m "[skip CI]"
-      # - run: git push
+      - run: git push
       - run: declare -x VERSION2=$(jq -r '.version' package.json); echo $VERSION2;
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
