@@ -11,8 +11,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm install; declare -x VERSION=$(jq -r '.version' package.json); echo $VERSION;
-      - run: gulp autoversion; declare -x VERSION2=$(jq -r '.version' package.json); echo $VERSION2;
+      - run: npm install; 
+      - run: npm install -g gulp;
+      - run: gulp autoversion;
+      - run: git add package.json
+      - run: git commit -m "[skip CI]"
+      # - run: git push
+      - run: declare -x VERSION2=$(jq -r '.version' package.json); echo $VERSION2;
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
